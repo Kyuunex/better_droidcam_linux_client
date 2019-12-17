@@ -1,5 +1,5 @@
 # A better client for DroidCam on Linux
-Because the official one is over-engineered, does not work with Discord and just generally badly done.
+Because the official one is over-engineered, does not work with Discord, does not work in all Linux distros painlessly and just generally badly done.
 
 # Requirements
 + `adb`
