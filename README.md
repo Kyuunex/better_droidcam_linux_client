@@ -9,4 +9,6 @@ Because the official one is over-engineered, does not work with Discord, does no
 If you use Arch Linux and have `yay` installed, you can just do `yay -S adb v4l2loopback-dkms ffmpeg` in terminal.
 
 # How to use
-+ Just run `droidcam.sh` in a terminal, enter a root password (`v4l2loopback` requires it), and keep it running until you are done.
++ It is recommended to put this file in PATH.
++ Just run `droidcam` in a terminal, enter a root password (`v4l2loopback` requires it), and keep it running until you are done.
++ You can also specify a resolution in the command line, like so: `droidcam 640x480`.
