@@ -1,0 +1,5 @@
+#!/bin/bash
+
+adb forward tcp:4747 tcp:4747
+
+mpv http://127.0.0.1:4747/mjpegfeed?"$@" --no-cache --untimed --no-demuxer-thread --video-sync=audio --vd-lavc-threads=1
