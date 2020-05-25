@@ -5,8 +5,9 @@ Because the official one is over-engineered, does not work with Discord, does no
 + `adb`
 + `v4l2loopback`
 + `ffmpeg`
++ On Arch based systems, you'll also need to install `android-udev` so you can use `adb` without root.
 
-If you use Arch Linux and have `yay` installed, you can just do `yay -S adb v4l2loopback-dkms ffmpeg` in terminal.
+If you have an Arch based system and have `yay` installed, you can just do `yay -S adb v4l2loopback-dkms ffmpeg android-udev` in terminal.
 
 # How to use
 + It is recommended to put this file in PATH.
