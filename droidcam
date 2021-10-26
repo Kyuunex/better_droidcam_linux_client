@@ -1,7 +1,34 @@
 #!/bin/bash
 
-adb forward tcp:4747 tcp:4747
+PROTOCOL=http
+IP_ADDRESS=127.0.0.1
+PORT=4747
+ENDPOINT=mjpegfeed
+DEVICE_NUMBER=7
+RESOLUTION=$@
+ENCODE_OPTIONS="-c:v copy"
+# ENCODE_OPTIONS="-vcodec rawvideo -pix_fmt yuv420p -threads 0"
+SUDO=sudo
 
-sudo modprobe v4l2loopback video_nr=4 'card_label=DroidCam'
+if ! command -v adb &> /dev/null
+then
+    echo "adb is not installed!"
+    exit
+fi
 
-ffmpeg -i http://127.0.0.1:4747/mjpegfeed?"$@" -c:v copy -f v4l2 /dev/video4
+if ! command -v ffmpeg &> /dev/null
+then
+    echo "ffmpeg is not installed!"
+    exit
+fi
+
+echo "waiting for the device to show up via adb"
+adb wait-for-usb-device
+
+adb forward tcp:$PORT tcp:$PORT
+
+$SUDO modprobe v4l2loopback video_nr=$DEVICE_NUMBER 'card_label=DroidCam'
+
+ffmpeg -i "$PROTOCOL://$IP_ADDRESS:$PORT/$ENDPOINT?$RESOLUTION" $ENCODE_OPTIONS -f v4l2 /dev/video$DEVICE_NUMBER
+
+# $SUDO modprobe -r v4l2loopback

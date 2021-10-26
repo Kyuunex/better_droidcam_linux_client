@@ -1,5 +1,26 @@
 #!/bin/bash
 
-adb forward tcp:4747 tcp:4747
+PROTOCOL=http
+IP_ADDRESS=127.0.0.1
+PORT=4747
+ENDPOINT=mjpegfeed
+RESOLUTION=$@
 
-mpv http://127.0.0.1:4747/mjpegfeed?"$@" --no-cache --untimed --no-demuxer-thread --video-sync=audio --vd-lavc-threads=1
+if ! command -v adb &> /dev/null
+then
+    echo "adb is not installed!"
+    exit
+fi
+
+if ! command -v mpv &> /dev/null
+then
+    echo "mpv is not installed!"
+    exit
+fi
+
+echo "waiting for the device to show up via adb"
+adb wait-for-usb-device
+
+adb forward tcp:$PORT tcp:$PORT
+
+mpv "$PROTOCOL://$IP_ADDRESS:$PORT/$ENDPOINT?$RESOLUTION" --no-cache --untimed --no-demuxer-thread --video-sync=audio --vd-lavc-threads=1
