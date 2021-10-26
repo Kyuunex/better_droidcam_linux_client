@@ -20,5 +20,6 @@ If you have an Arch based system (Arch/Manjaro), you can just do `sudo pacman -S
 # Limitations
 + Droidcam itself has some limitations.
   + Resolution is limited to 480p in the free version and 1080p in the paid version.
-  + Web interface won't work when you have this script running.
+  + Web interface won't work when you have this script running.  
+
 If you want something better, there's always [IP webcam](https://github.com/Kyuunex/ip_webcam_linux_client).
